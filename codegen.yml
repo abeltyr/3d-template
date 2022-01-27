@@ -1,0 +1,6 @@
+overwrite: true
+schema: ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+generates:
+  ./src/types/graphql.ts:
+    plugins:
+      - "typescript"
