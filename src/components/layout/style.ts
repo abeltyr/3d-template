@@ -4,6 +4,7 @@ interface LayoutContainerData {
   background?: string;
 }
 export const LayoutContainer = styled.div<LayoutContainerData>`
+  position: relative;
   background-color: ${(props) =>
     props.background ? props.background : theme.colors.primaryBackground};
   color: ${theme.colors.text};
@@ -30,6 +31,17 @@ export const LayoutContainer = styled.div<LayoutContainerData>`
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: ${theme.colors.primaryBackground};
+  }
+
+  #mouse-tracker {
+    border: 2px solid #fff;
+    border-radius: 100%;
+    z-index: 100;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    transform: translate(0px, 0px);
+    transition: transform 0.075s ease-in-out;
+    will-change: transform;
   }
 `;
