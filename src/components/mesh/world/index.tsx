@@ -39,22 +39,29 @@ const World = () => {
 
         if (!ticking) {
             if (cameraData && !ticking) {
-
-                let sum = lastKnownScrollPosition > scrollPosition.scrollTop ? 0.25 : -0.25;;
-                gsap.to(cameraData.position, {
-                    duration: 0.5, x: cameraData.position.x + sum,
-                }); gsap.to(cameraData.position, {
-                    duration: 0.5, y: cameraData.position.y + sum,
-                }); gsap.to(cameraData.position, {
-                    duration: 0.5, z: cameraData.position.z + sum,
-                });
-                // gsap.to(cameraData.position, {
-                //     duration: 3, set: new Vector3(
-                //         cameraData.position.x + sum,
-                //         cameraData.position.y + sum,
-                //         cameraData.position.z + sum
-                //     )
-                // });
+                let sum = 1;
+                if (lastKnownScrollPosition > scrollPosition.scrollTop) {
+                    gsap.to(cameraData.position, {
+                        duration: 0.5, x: cameraData.position.x + sum,
+                    });
+                    gsap.to(cameraData.position, {
+                        duration: 0.5, y: cameraData.position.y + sum,
+                    });
+                    gsap.to(cameraData.position, {
+                        duration: 0.5, z: cameraData.position.z + sum,
+                    });
+                }
+                if (lastKnownScrollPosition < scrollPosition.scrollTop) {
+                    gsap.to(cameraData.position, {
+                        duration: 0.5, x: cameraData.position.x - sum,
+                    });
+                    gsap.to(cameraData.position, {
+                        duration: 0.5, y: cameraData.position.y - sum,
+                    });
+                    gsap.to(cameraData.position, {
+                        duration: 0.5, z: cameraData.position.z - sum,
+                    });
+                }
                 ticking = true;
             }
         }
