@@ -2,6 +2,7 @@ import Head from 'next/head';
 import React, { useEffect, useState } from "react";
 import { LayoutContainer } from './style';
 import Stats from 'stats.js';
+import ThreeJsCanvas from '../canvas';
 
 export default function Layout({ children, background, header = "title" }: any) {
     const [refresh, setRefresh] = useState<boolean>(true)
@@ -18,10 +19,10 @@ export default function Layout({ children, background, header = "title" }: any) 
                 requestAnimationFrame(animate);
         };
         animate();
-        // window.addEventListener("mousemove", mouseTracker);
+        window.addEventListener("mousemove", mouseTracker);
 
         return () => {
-            // window.removeEventListener("mousemove",mouseTracker);
+            window.removeEventListener("mousemove", mouseTracker);
             setRefresh(false);
         }
 
@@ -29,7 +30,8 @@ export default function Layout({ children, background, header = "title" }: any) 
 
     const mouseTracker = (_event: any) => {
         const mouseTracker: any = document.querySelector("div#mouse-tracker");
-        mouseTracker!.style.transform = `translate(${_event.clientX - 30}px, ${_event.clientY - 30}px)`;
+        if (mouseTracker)
+            mouseTracker!.style.transform = `translate(${_event.clientX - 30}px, ${_event.clientY - 30}px)`;
     }
     return (
         <React.Fragment>
@@ -38,10 +40,32 @@ export default function Layout({ children, background, header = "title" }: any) 
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <LayoutContainer background={background} >
-                {/* <div id="mouse-tracker" /> */}
-                <main>
-                    {children}
-                </main>
+                <div id="mouse-tracker" />
+
+                <div className='absolute top-0 left-0  w-screen h-screen'>
+                    <ThreeJsCanvas />
+                </div>
+
+
+                {/* this Give the big hight for controlling the scroll */}
+
+
+                <div className="w-screen overflow-y-auto z-20" id="blocker">
+                    {
+                        Array(20).fill(0).map((data, index) => {
+                            return <div className="w-screen h-screen flex justify-center items-center" key={index}></div>
+                        })
+                    }
+                </div>
+                {/* This is use to actually display the need html part */}
+
+
+
+                <div className="w-screen overflow-y-auto z-10" id="blocker">
+                    <main>
+                        {children}
+                    </main>
+                </div>
             </LayoutContainer>
         </React.Fragment>
     );

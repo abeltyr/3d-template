@@ -4,13 +4,26 @@ interface LayoutContainerData {
   background?: string;
 }
 export const LayoutContainer = styled.div<LayoutContainerData>`
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-width: 320px;
   position: relative;
   background-color: ${(props) =>
     props.background ? props.background : theme.colors.primaryBackground};
   color: ${theme.colors.text};
-  height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
+
+  #blocker {
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100vw;
+    height: 100vh;
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
 
   /* width */
   ::-webkit-scrollbar {
@@ -43,5 +56,6 @@ export const LayoutContainer = styled.div<LayoutContainerData>`
     transform: translate(0px, 0px);
     transition: transform 0.075s ease-in-out;
     will-change: transform;
+    pointer-events: none;
   }
 `;
