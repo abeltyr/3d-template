@@ -54,5 +54,6 @@ export const LayoutContainer = styled.div<LayoutContainerData>`
     height: 60px;
     position: absolute;
     pointer-events: none;
+    display: none;
   }
 `;

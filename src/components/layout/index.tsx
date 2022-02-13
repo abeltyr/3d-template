@@ -34,6 +34,7 @@ export default function Layout({ children, background, header = "title" }: any) 
         gsap.to("#mouse-tracker", {
             duration: 0.5,
             x: _event.clientX - 30,
+            display: "block",
             y: _event.clientY - 30,
         });
     }
