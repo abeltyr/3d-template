@@ -2,7 +2,7 @@
 import React, { } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap';
-import { Vector3 } from 'three';
+import { DoubleSide, Vector3 } from 'three';
 
 const World = () => {
 
@@ -67,9 +67,9 @@ const World = () => {
         }
     });
     return (
-        <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} >
+        <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow >
             <planeBufferGeometry args={[2000, 2000]} />
-            <meshStandardMaterial color={'white'} />
+            <meshStandardMaterial color={'white'} side={DoubleSide} />
         </mesh>
     )
 }

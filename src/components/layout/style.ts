@@ -53,9 +53,6 @@ export const LayoutContainer = styled.div<LayoutContainerData>`
     width: 60px;
     height: 60px;
     position: absolute;
-    transform: translate(0px, 0px);
-    transition: transform 0.075s ease-in-out;
-    will-change: transform;
     pointer-events: none;
   }
 `;

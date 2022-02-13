@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { LayoutContainer } from './style';
 import Stats from 'stats.js';
 import ThreeJsCanvas from '../canvas';
+import gsap from 'gsap';
+
 
 export default function Layout({ children, background, header = "title" }: any) {
     const [refresh, setRefresh] = useState<boolean>(true)
@@ -29,9 +31,11 @@ export default function Layout({ children, background, header = "title" }: any) 
     }, [])
 
     const mouseTracker = (_event: any) => {
-        const mouseTracker: any = document.querySelector("div#mouse-tracker");
-        if (mouseTracker)
-            mouseTracker!.style.transform = `translate(${_event.clientX - 30}px, ${_event.clientY - 30}px)`;
+        gsap.to("#mouse-tracker", {
+            duration: 0.5,
+            x: _event.clientX - 30,
+            y: _event.clientY - 30,
+        });
     }
     return (
         <React.Fragment>
