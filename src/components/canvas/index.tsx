@@ -6,16 +6,19 @@ import ColumnModel from '../../components/models/building/column';
 import BoxMesh from '../mesh/box';
 import PlaneMesh from '../mesh/world';
 import World from '../mesh/world';
+import Background from '../mesh/background';
 
 const ThreeJsCanvas = () => {
     return <Canvas >
         <World />
+        <Background />
         <OrbitControls />
-        <ambientLight intensity={0.5} />
-        <BoxMesh />
-        <Suspense fallback={null}>
+        <ambientLight intensity={0.9} />
+        <directionalLight />
+        {/* <BoxMesh /> */}
+        {/* <Suspense fallback={null}>
             <ColumnModel />
-        </Suspense>
+        </Suspense> */}
     </Canvas>
 
 }

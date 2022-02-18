@@ -7,23 +7,47 @@ import { useGLTF } from '@react-three/drei'
 
 const ColumnModel = (props: any) => {
     const group = useRef()
-    const data: any = useGLTF('/models/Pilar.gltf')
+    const data: any = useGLTF('/models/1.gltf')
     console.log("data", data)
+    console.log(data.materials.text)
     return (
         <group ref={group} {...props} dispose={null}>
             <mesh
                 castShadow
                 receiveShadow
-                geometry={data.nodes.Pillar2.geometry}
-                material={data.materials['lambert2']}
-                rotation={[Math.PI / 2, 0, 0]}
+                geometry={data.nodes.Cylinder.geometry}
+                material={data.materials.landing}
                 position={[0, 2, 0]}
-                scale={[0.25, 0.25, 0.25]}
             />
+            <mesh
+                castShadow
+                receiveShadow
+                geometry={data.nodes.landing.geometry}
+                material={data.materials.landing}
+                position={[0, 1, 0]}
+                scale={[4, 0.5, 4]}
+            />
+            <mesh
+                castShadow
+                receiveShadow
+                geometry={data.nodes.Text.geometry}
+                material={data.materials.text}
+                rotation={[Math.PI / 2, 0, Math.PI]}
+                position={[3, 6.8, 0]}
+            />
+            {/* <mesh
+            castShadow
+            receiveShadow
+            geometry={data.nodes.Pillar2.geometry}
+            material={data.materials['lambert2']}
+            rotation={[Math.PI / 2, 0, 0]}
+            position={[0, 2, 0]}
+            scale={[0.25, 0.25, 0.25]}
+        /> */}
         </group>
     )
 }
 
-useGLTF.preload('/models/Pilar.gltf')
+useGLTF.preload('/models/1.gltf')
 
 export default ColumnModel;

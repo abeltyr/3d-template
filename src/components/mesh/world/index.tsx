@@ -1,9 +1,6 @@
 
-import React, { } from 'react'
+import React, { useMemo } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import gsap from 'gsap';
-import { DoubleSide, Vector3 } from 'three';
-
 const World = () => {
 
     let lastKnownScrollPosition = 0;
@@ -17,7 +14,7 @@ const World = () => {
 
     useThree(({ camera }) => {
         cameraData = camera;
-        cameraData.position.set(2.5, 12.5, 15);
+        cameraData.position.set(0, 0, 11.5);
         const blocker: any = document.querySelector("div#blocker");
         if (blocker) blocker.addEventListener("scroll", (_event: any) => {
             scrollPosition = {
@@ -34,43 +31,12 @@ const World = () => {
 
         })
     });
-    let stop = false;
-    useFrame(() => {
-
-        if (!ticking) {
-            if (cameraData && !ticking) {
-                let sum = 1;
-                if (lastKnownScrollPosition > scrollPosition.scrollTop) {
-                    gsap.to(cameraData.position, {
-                        duration: 0.5, x: cameraData.position.x + sum,
-                    });
-                    gsap.to(cameraData.position, {
-                        duration: 0.5, y: cameraData.position.y + sum,
-                    });
-                    gsap.to(cameraData.position, {
-                        duration: 0.5, z: cameraData.position.z + sum,
-                    });
-                }
-                if (lastKnownScrollPosition < scrollPosition.scrollTop) {
-                    gsap.to(cameraData.position, {
-                        duration: 0.5, x: cameraData.position.x - sum,
-                    });
-                    gsap.to(cameraData.position, {
-                        duration: 0.5, y: cameraData.position.y - sum,
-                    });
-                    gsap.to(cameraData.position, {
-                        duration: 0.5, z: cameraData.position.z - sum,
-                    });
-                }
-                ticking = true;
-            }
-        }
+    useFrame(({ clock }) => {
+        // clock.getElapsedTime()
     });
     return (
-        <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow >
-            <planeBufferGeometry args={[2000, 2000]} />
-            <meshStandardMaterial color={'white'} side={DoubleSide} />
-        </mesh>
+        <>
+        </>
     )
 }
 
