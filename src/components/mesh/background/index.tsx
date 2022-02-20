@@ -1,5 +1,5 @@
 
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useFrame, useThree, } from '@react-three/fiber'
 import gsap from 'gsap';
 import { DoubleSide, Vector3 } from 'three';
@@ -22,6 +22,7 @@ const Background = () => {
     const blobData = useMemo(
         () => ({
             uniforms: {
+                uRate: { value: 0.0 },
                 uAnimation: { value: 0.0 },
                 uScreenWidth: { value: window.innerWidth }
             },
@@ -30,11 +31,23 @@ const Background = () => {
         }),
         []
     )
+    let time = 0;
     useFrame(({ clock }) => {
         // clock.getElapsedTime() 
         wallData.uniforms.uAnimation.value += 0.001;
-        blobData.uniforms.uAnimation.value += 0.1;
+        blobData.uniforms.uRate.value = (Math.cos(blobData.uniforms.uAnimation.value / 2) * 2 - 1);
+        blobData.uniforms.uAnimation.value += 1 / 30
     });
+
+    let count = 5000;
+    let positions = new Float32Array(count * 3);
+
+    useEffect(() => {
+        let count = 0;
+        for (let i = 0; i < count * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 10;
+        }
+    }, [])
     return (
         <group>
             <mesh position={[0, 0, -100.1]} rotation={[0, 0, 0]}  >
@@ -45,10 +58,19 @@ const Background = () => {
                 <planeBufferGeometry args={[400, 400]} />
                 <meshStandardMaterial color={'#000000'} side={DoubleSide} transparent={true} opacity={0.825} />
             </mesh>
-            {/* <mesh position={[0, 0, 0]} rotation={[0, 0, 0]}  >
-                <sphereBufferGeometry args={[5, 32, 16]} />
-                <shaderMaterial attach="material" {...blobData} />
-            </mesh> */}
+            <mesh position={[0, 0, 0]} rotation={[0, 0, 0]}  >
+                {/* <bufferGeometry attach="geometry">
+                    <bufferAttribute
+                        attachObject={["attributes", "position"]}
+                        array={positions}
+                        itemSize={3}
+                        count={count}
+                    />
+                </bufferGeometry> */}
+                <sphereGeometry args={[2.5, 36, 52]} />
+                {/* <meshNormalMaterial /> */}
+                <shaderMaterial attach="material" {...blobData} transparent={true} opacity={0.6} />
+            </mesh>
         </group>
     )
 }

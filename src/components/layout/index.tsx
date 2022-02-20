@@ -10,17 +10,17 @@ export default function Layout({ children, background, header = "title" }: any) 
     const [refresh, setRefresh] = useState<boolean>(true)
     useEffect(() => {
         // SETUP the FBS READER
-        // const stats = new Stats();
-        // stats.showPanel(0);
-        // document.body.appendChild(stats.dom);
+        const stats = new Stats();
+        stats.showPanel(0);
+        document.body.appendChild(stats.dom);
 
-        // const animate = () => {
-        //     stats.begin();
-        //     stats.end();
-        //     if (refresh)
-        //         requestAnimationFrame(animate);
-        // };
-        // animate();
+        const animate = () => {
+            stats.begin();
+            stats.end();
+            if (refresh)
+                requestAnimationFrame(animate);
+        };
+        animate();
         // window.addEventListener("mousemove", mouseTracker);
 
         return () => {
