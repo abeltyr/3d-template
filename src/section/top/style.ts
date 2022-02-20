@@ -20,18 +20,18 @@ export const Container = styled.div`
     line-height: 1;
 
     top: 11rem;
-    @media (max-width: 1624px) {
+    @media (min-width: 1824px) {
       font-size: 5rem /* 72px */;
       line-height: 1;
       top: 13rem;
-      width: 68%;
+      width: 58%;
       left: 30%;
     }
-    @media (max-width: 1024px) {
+    @media (max-width: 1824px) {
       font-size: 4rem /* 72px */;
       line-height: 1;
       top: 12rem;
-      width: 68%;
+      width: 57%;
       left: 32%;
     }
     @media (max-width: 900px) {
@@ -55,29 +55,33 @@ export const Container = styled.div`
   }
   .menu {
     color: ${theme.colors.primary};
-    .icon-menu {
-      z-index: 10;
-      border: 1px solid ${theme.colors.primary};
-      svg {
-        transition: stroke 0.3s ease-in-out;
-        stroke: ${theme.colors.primary};
-      }
-    }
-    .menu-box {
-      z-index: 5;
-      transform: scale(0, 0);
-      background: ${theme.colors.primary};
-      transition: transform 250ms ease-in-out;
-      border: 1.2px solid ${theme.colors.primary};
-    }
-    :hover {
+    .menu-data {
       .icon-menu {
+        z-index: 10;
+        border: 1px solid ${theme.colors.primary};
         svg {
-          stroke: ${theme.colors.primaryBackground};
+          transition: stroke 0.3s ease-in-out;
+          transition-delay: 150ms;
+          stroke: ${theme.colors.primary};
         }
       }
       .menu-box {
-        transform: scale(1, 1);
+        z-index: 5;
+        transform: scale(0, 0);
+        background: ${theme.colors.primary};
+        transition: transform 250ms ease-in-out;
+        transition-delay: 150ms;
+        border: 1.2px solid ${theme.colors.primary};
+      }
+      :hover {
+        .icon-menu {
+          svg {
+            stroke: ${theme.colors.primaryBackground};
+          }
+        }
+        .menu-box {
+          transform: scale(1, 1);
+        }
       }
     }
   }
