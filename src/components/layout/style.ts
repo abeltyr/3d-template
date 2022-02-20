@@ -46,7 +46,7 @@ export const LayoutContainer = styled.div<LayoutContainerData>`
   ::-webkit-scrollbar-thumb:hover {
   }
 
-  #mouse-tracker {
+  /* #mouse-tracker {
     border: 2px solid #fff;
     border-radius: 100%;
     z-index: 100;
@@ -55,5 +55,5 @@ export const LayoutContainer = styled.div<LayoutContainerData>`
     position: absolute;
     pointer-events: none;
     display: none;
-  }
+  } */
 `;

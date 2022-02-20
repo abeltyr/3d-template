@@ -10,34 +10,34 @@ export default function Layout({ children, background, header = "title" }: any) 
     const [refresh, setRefresh] = useState<boolean>(true)
     useEffect(() => {
         // SETUP the FBS READER
-        const stats = new Stats();
-        stats.showPanel(0);
-        document.body.appendChild(stats.dom);
+        // const stats = new Stats();
+        // stats.showPanel(0);
+        // document.body.appendChild(stats.dom);
 
-        const animate = () => {
-            stats.begin();
-            stats.end();
-            if (refresh)
-                requestAnimationFrame(animate);
-        };
-        animate();
-        window.addEventListener("mousemove", mouseTracker);
+        // const animate = () => {
+        //     stats.begin();
+        //     stats.end();
+        //     if (refresh)
+        //         requestAnimationFrame(animate);
+        // };
+        // animate();
+        // window.addEventListener("mousemove", mouseTracker);
 
         return () => {
-            window.removeEventListener("mousemove", mouseTracker);
-            setRefresh(false);
+            // window.removeEventListener("mousemove", mouseTracker);
+            // setRefresh(false);
         }
 
     }, [])
 
-    const mouseTracker = (_event: any) => {
-        gsap.to("#mouse-tracker", {
-            duration: 0.5,
-            x: _event.clientX - 30,
-            display: "block",
-            y: _event.clientY - 30,
-        });
-    }
+    // const mouseTracker = (_event: any) => {
+    //     gsap.to("#mouse-tracker", {
+    //         duration: 0.5,
+    //         x: _event.clientX - 30,
+    //         display: "block",
+    //         y: _event.clientY - 30,
+    //     });
+    // }
     return (
         <React.Fragment>
             <Head>
@@ -55,13 +55,13 @@ export default function Layout({ children, background, header = "title" }: any) 
                 {/* this Give the big hight for controlling the scroll */}
 
 
-                <div className="w-screen overflow-y-auto z-20" id="blocker">
+                {/* <div className="w-screen overflow-y-auto z-20" id="blocker">
                     {
                         Array(20).fill(0).map((data, index) => {
                             return <div className="w-screen h-screen flex justify-center items-center" key={index}></div>
                         })
                     }
-                </div>
+                </div> */}
                 {/* This is use to actually display the need html part */}
 
 

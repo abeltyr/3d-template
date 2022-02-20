@@ -15,10 +15,10 @@ export const theme = {
   },
   colors: {
     white: "#ffffff",
-    primary: "#F89728",
-    primaryBackground: "#f0000099",
+    primary: "#eeff04",
+    primaryBackground: "#252525",
     secondaryBackground: "#FFFFFF",
-    secondary: "#0D4E59",
+    secondary: "#d2d2d2",
     third: "#AAAAAA",
     secondaryLight: "#363636",
     secondaryDark: "#252525",

@@ -13,8 +13,6 @@ void main () {
 
     vUv = uv;
 
-    vPosition= viewPosition.xy;
-
 }`;
 
 export default vertexShader;
